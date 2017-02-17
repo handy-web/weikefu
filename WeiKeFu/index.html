@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	    <meta name="renderer" content="webkit">
+		<title>微信多客服务系统</title>
+		<link rel="stylesheet" href="css/style.css" />
+		<script type="text/javascript" src="js/jquery-1.7.2.min.js" ></script>
+		<script type="text/javascript" src="js/jedate.js"></script>
+	</head>
+	<body>
+		<div class="index-center" style="border-bottom: 0 none;border-top: 0 none;">
+			<div class="index-box">
+				<div class="index-line">
+					<div class="index-le">
+						<img class="index-logo" src="img/logo.png" />
+					</div>
+					<div class="index-le">
+						<div class="index-title">微信多客服系统</div>
+						<div class="index-hfkf"><a>恢复客服</a><a class="mbut">修改密码</a><a class="dbut">查看订单</a></div><!-------------/新增/查看订单------------>
+					</div>
+
+					<div class="index-frt">
+						<div class="fle index-ml-1">
+							<div>系统通知：今日销售冠军是：欧阳小结</div>
+						</div>
+						<div class="fle index-ml-2">
+							<div>销售总额是：90000元</div>
+						</div>
+						<div class="index-long">
+							<span>客服编号：001</span>
+							<span>客服昵称：李晓明</span>
+							<span>客服状态：暂停</span>
+						</div>
+						<!--退出登录-->
+						<span class="mspan"><img src="img/tc.png"/><p style="font-size: 10px; b">退出</p></span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="index-center" style="border-top: 0 none;">
+			<div class="box">
+				<!--左内容-->
+				<div class="box-le">
+					<div class="box-line1">
+						<div class="box-title">我的用户</div>
+						<div class="box-select">
+							<select>
+								<option>重点用户</option>
+								<option>0000000</option>
+								<option>1111111</option>
+							</select>
+						</div>
+						<div class="box-select" style="margin-left: 24px;">
+							<select>
+								<option>子宫肌瘤</option>
+								<option>0000000</option>
+								<option>1111111</option>
+							</select>
+						</div>
+
+						<div class="d-time">
+							<span><input type="text" name="" id="startDate" value="" placeholder="请选择"  readonly /> </span>
+							<span style="padding-top: 6px;">到</span>
+							<span><input type="text" name="" id="endDate" value="" placeholder="请选择"  readonly/></span>
+						</div>
+						<div class="box-but" style="clear: both;">
+							<input type="submit" value="确 定" />
+						</div>
+						<div class="box-ly">
+
+							<ul class="box-li">
+								<li>
+									<a>
+										<div class="fle">
+											<div class="box-ico"><span>3</span></div>
+											<img class="box-img" src="img/011.jpg" />
+										</div>
+										<div class="fle">
+											<p class="box-p1">只会流眼泪的小鲨鱼 <span></span></p>
+											<p class="box-p2"><span>子宫肌瘤</span><span>重点客户</span></p>
+										</div>
+										<div class="box-ms">18:20</div>
+									</a>
+								</li>
+							</ul>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+			<!--中间内容-已修改-->
+			<div class="box-m">
+				<div class="box-m-top">
+						<div class="fle"><img class="box-m-img" src="img/011.jpg" /> </div>
+						<div class="fle">
+							<p class="p1">只会流眼泪的小鲨鱼</p>
+							<p class="p2"><span>子宫肌瘤</span><span>重点客户</span></p>
+						</div>
+						<div class="frt">
+							<p class="p3">上次咨询：2016/07/18</p>
+							
+							<!-------------/新增/录入订单------------>
+							<a class="dcou">录入订单</a>
+							<a class="but1">保存</a>							
+						</div>
+			    </div>
+			    
+<!--------------------------------------------------------
+                    	作者：handy@163.com
+                    	时间：2016-08-25
+                    	描述：备注改成新布局（升级）
+---------------------------------------------------------->
+				<div class="box-area">
+					<div class="box-cell">
+						<div class="box-cl">
+							<input type="text" name="" value="" placeholder="请输入姓名" />
+							<input type="text" name="" value="" placeholder="请输入姓名" />
+						</div>			
+						<div class="box-boc">
+							<textarea class="arct" placeholder="详细地址"></textarea>
+						</div>
+						<div class="box-boc">
+							<textarea class="arct" placeholder="请输入备注"></textarea>
+						</div>
+					</div>
+				</div>
+<!--------------------------end---------------------------->				
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--------------------------------------------------------						
+                    	作者：handy@163.com
+                    	时间：2016-08-30
+                    	描述：订单全局start
+---------------------------------------------------------->
+				<!--遮罩-->
+				<div class="order-cm" style="display: none;"></div>
+				
+				<!--地区三级联动-->
+				<script language="javascript">
+					$(function() {
+						$(document).area("s_province", "s_city", "s_county"); 
+					});
+				</script>
+				<script type="text/javascript" src="js/city.js" ></script>
+				
+				<!--录入订单-->
+				<div class="order-box" style="display: none;">
+					<div class="order-cell">
+						<div class="order-tab">
+							<h3>录入订单</h3>
+							<div class="order-gt"><img class="or-close" src="img/colse.png"/></div>
+							
+							<div class="box-cell order-bc order-top">
+								<div class="order-line"><span>姓名：</span><input type="text" name="" placeholder="请输入姓名" /></div>
+								<div class="order-line"><span class="or-wt">手机：</span><input type="text" name="" placeholder="请输入姓名" /></div>								
+							</div>
+							<div class="box-cell order-bc">
+								<div class="order-line"><span>省份：</span>
+									<select id="s_province" >
+										<option>请选择省份</option>
+									</select>
+								</div>
+								<div class="order-line"><span class="or-wt">城市：</span>
+									<select id="s_city">
+										<option>请选择市/县</option>
+									</select>
+								</div>	
+								<div class="order-line"><span class="or-wt">区域：</span>
+									<select id="s_county">
+										<option>请选择区</option>
+									</select>
+								</div>	
+								<div class="order-line or-wt">
+									<input class="lens" type="" name="" value="" placeholder="详细地址" />
+								</div>
+							</div>												
+							<div class="box-cell order-bc">
+								<p>代收货款</p>
+								<ul class="order-list">
+									<li>是</li>
+									<li>否</li>
+								</ul>
+								<p class="order-bt">预付款</p>
+								<ul class="order-list">
+									<li>是</li>
+									<li>否</li>
+								</ul>
+							</div>
+							
+<!--------------------------三个按钮同一行-->							
+							<div class="box-cell order-bc order-lint">
+								<div class="order-lins">
+									<textarea rows="2" cols="4" placeholder="请输入备注"></textarea>
+								</div>
+								<div class="order-line order-le">
+									<a class="but">保存</a>
+								</div>
+								<div class="order-line">
+									<a class="but">放弃</a>
+								</div>
+								<div class="order-line">
+									<a class="but">添加一行</a>
+								</div>
+							</div>
+
+							<!--产品信息录入-->
+<!--------------------------标题不滚动-->
+							<div class="order-ht">
+								<table class="tab-box">
+									<tbody>
+										<tr>
+											<th>产品名</th>
+											<th>单价</th>
+											<th>数量</th>
+											<th>优惠</th>
+											<th>总计</th>
+											<th>操作</th>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+<!--------------------------内容滚动-->
+							<div class="tab-tm">
+								<table class="tab-ctm">
+									<tbody>
+										<tr>
+											<td><div class="tab-in">
+												<select>
+													<option>000</option>
+												</select>
+											</div></td>
+											<td><div class="tab-in"><input type="text" name="" value="" placeholder="单价" /></div></td>
+											<td><div class="tab-in"><input type="text" name="" value="" placeholder="数量" /></div></td>
+											<td><div class="tab-in"><input type="text" name="" value="" placeholder="优惠" /></div></td>
+											<td><div class="tab-in"><input type="text" name="" value="" placeholder="99" readonly /></div></td>
+											<td>
+												<a class="tab-bt">保存</a>
+												<a class="tab-ot">删除</a>
+											</td>
+										</tr>										
+										<tr>
+											<td><div class="tab-in">
+												<select>
+													<option>000</option>
+												</select>
+											</div></td>
+											<td><div class="tab-in"><input type="text" name="" value="" placeholder="单价" /></div></td>
+											<td><div class="tab-in"><input type="text" name="" value="" placeholder="数量" /></div></td>
+											<td><div class="tab-in"><input type="text" name="" value="" placeholder="优惠" /></div></td>
+											<td><div class="tab-in"><input type="text" name="" value="" placeholder="99" readonly /></div></td>
+											<td>
+												<a class="tab-bt">保存</a>
+												<a class="tab-ot">删除</a>
+											</td>
+										</tr>	
+									</tbody>
+								</table>	
+							</div>
+						</div>						
+					</div>
+				</div>
+
+	
+				<!--查看订单-->
+				<!--订单列表-->				
+				<div class="or-tab" style="display: none;">
+					<div class="or-line">
+						<div class="or-cle">
+							<h3>订单查询</h3>
+							<div class="order-gt or-t"><img class="m-close" src="img/colse.png"/></div>
+							<div class="or-mt">
+								<span>姓名：</span>
+								<input type="text" class="or-in" name="" value="" placeholder="请输入姓名"/>
+								<span class="or-om">电话：</span>
+								<input type="text" class="or-in" name="" value="" placeholder="请输入电话"/>
+								<span class="or-om">是否代收货款：</span>
+								<select class="or-se">
+									<option>是</option>
+									<option>否</option>
+								</select>
+								<span class="or-om">是否预付款：</span> 
+								<select class="or-se">
+									<option>是</option>
+									<option>否</option>
+								</select>
+								<span class="or-om">日期：</span>
+								<input type="text" class="or-in" name="" value="" placeholder="请选择"/>
+								<span class="tsp">至</span>
+								<input type="text" class="or-in" name="" value="" placeholder="请选择"/>
+								<div class="or-ft">
+									<a class="but">查询</a>
+								</div>
+							</div>
+							<div class="or-list">
+								<table>
+									<tbody>
+										<tr>
+											<th>订单编号</th>
+											<th>订单总额</th>
+											<th>订单状态</th>
+											<th>创建日期 </th>	
+											<th>代收货款</th>
+											<th>预付款</th>
+											<th>客户姓名</th>
+											<th>客户昵称</th>
+											<th>联系电话</th>       
+											<th>操作</th>
+										</tr>
+										<tr>
+											<td>147287990911387</td>
+											<td>1999</td>
+											<td>待审核</td>
+											<td>2016-08-20 16:00:00</td>											
+											<td>否</td>
+											<td>否</td>											
+											<td>陈晓明</td>
+											<td>饿了的小鲨鱼想吃饭饿了的小鲨鱼想吃饭</td>
+											<td>15200000000</td>
+											<td class="look">查看</td>	
+										</tr>													
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<!--订单详情-->
+				<div class="or-tm" style="display: none;">
+					<div class="or-line">
+						<div class="or-cle">
+							<h3>订单详情</h3>
+							<div class="or-ism"><img class="t-cloes" src="img/i-back.png"/></div>
+							<div class="or-cell">
+								<table>
+									<tbody>
+										<tr>
+											<th>订单编号</th>
+											<td>DSA1234567890</td>
+										</tr>
+										<tr>
+											<th>订单日期</th>
+											<td>2016-08-10</td>
+										</tr>
+										<tr>
+											<th>姓名</th>
+											<td>陈小春</td>
+										</tr>
+										<tr>
+											<th>电话</th>
+											<td>15200000000</td>
+										</tr>
+										<tr>
+											<th>地址</th>
+											<td>广东省深圳市南山区就是看书看书看也一样反反复复书看书看书101</td>
+										</tr>
+										<tr>
+											<th>备注</th>
+											<td>尽快发货</td>
+										</tr>
+										<tr>
+											<th>是否代收货款</th>											
+											<td>是</td>
+										</tr>
+										<tr>
+											<th>是否预付款</th>
+											<td>是</td>
+										</tr>										
+										<tr>
+											<th>状态</th>
+											<td>已付款</td>
+										</tr>
+										<tr>
+											<th>订单总额</th>
+											<td>389.00</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+<!--------------------------标题不滚动-->
+							<div class="or-qt">
+								<table>
+									<tbody>
+										<tr>
+											<th>产品名</th>
+											<th>单价</th>
+											<th>数量</th>
+											<th>优惠</th>
+											<th>合计</th>
+										</tr>
+									</tbody>
+								</table>
+							</div>	
+<!--------------------------内容滚动-->
+							<div class="or-ut">
+								<table>
+									<tbody>
+										<tr>
+											<td>感冒灵颗粒</td>
+											<td>199.00</td>
+											<td>2</td>
+											<td>10.00</td>
+											<td>388.00</td>
+										</tr>
+										<tr>
+											<td>感康</td>
+											<td>99.00</td>
+											<td>10</td>
+											<td>10.00</td>
+											<td>1980.00</td>
+										</tr>	
+										
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+<!--------------------------订单全局end---------------------------->
+<!--------------------------订单全局end---------------------------->
+<!--------------------------订单全局end---------------------------->
+<!--------------------------订单全局end---------------------------->
+
+
+
+
+				<div style="padding: 0 12px;clear: both;">
+					<div class="box-cin">
+						<div class="box-div"></div>
+					</div>
+					<div class="box-moc">
+						<ul class="box-bm">
+							<li class="butt act">重点客户</li>
+							<li class="butt">一般客户</li>
+							<li class="butt">淘汰客户</li>
+						</ul>
+						<span class="box-xian">|</span>
+						<ul class="box-bm2">
+							<li class="butt act">卵巢囊肿</li>
+							<li class="butt">子宫肌瘤</li>
+							<li class="butt">内膜增生</li>
+							<li class="butt">其他</li>
+						</ul>
+					</div>
+				</div>
+
+				<!--聊天内容-->
+				<div class="box-wap">
+					<ul class="chat-ul">
+							<li>
+								<p class="char-time">2016/7/18 18:20</p>
+							</li>
+
+							<li>
+								<div class="chat-r">
+									<div><p class="fle box-chat box-right">您好！在吗000000000看世界就是想念那些看世界就是想念那</p>
+										<span><img class="chat-img char-ma" src="img/011.jpg" /></span>
+									</div>
+
+								</div>
+							</li>			
+							<li>
+								<div class="chat-l">
+									<img class="chat-img fle" src="img/011.jpg" />
+									<div style=""><p class="fle box-chat box-left">您好！在吗000088888看世界就是想念那些看世界就是想念那些</p></div>			
+								</div>
+							</li>	
+					</ul>
+
+				</div>
+				<div class="box-cin">
+					<div class="box-div"></div>
+				</div>
+				
+				
+				
+<!--------------------------------------------------------
+                    	作者：handy@163.com
+                    	时间：2016-10-17
+                    	描述：添加图标功能
+---------------------------------------------------------->		
+				<style>
+					.row-item{position: relative;margin: 0 16px 0 11.8px;}
+					.row-box{position: absolute;bottom: 4px;width: 100%;right: 0;left: 0;}
+					.row-box .row-bg{background: #fff;overflow: hidden;padding: 12px 0 12px 7px;-webkit-box-shadow: 0 3px 20px rgba(0,0,0,.1); box-shadow: 0 3px 20px rgba(0,0,0,.1);}
+					.row-box .row-bg .row-list{}					
+					.row-line{width: 100%;max-height: 228px;overflow-y: auto;}
+					.row-line li{float: left;margin-left: 9px;display: inline-block;position: relative;border: 1px solid #ccc;font-size: 0;margin-bottom: 12px;cursor: pointer;width: 102px;}
+					.row-line li  .avt{background: url(img/row-act.png) center no-repeat;background-size: 100% auto;z-index: 999;width: 100px;height: 100px;position: absolute;top: 0;display: none;}
+					.row-line li .imt{font-size: 0;width: 100px;height: 100px;z-index: 9;}					
+					.row-line li .row{padding: 4px 6px;font-size: 11px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+					.row-but{text-align: center;margin-top: 4px;}
+					.row-but a{display: inline-block;padding: 5px 0;width: 75px;margin: 0 12px;font-size: 12px;border-radius: 5px;}
+					.row-but .ctn{background: #ccc;}
+					.row-but .ctm{background: #12A6E6;color: #fff;}
+				</style>
+				
+				<div class="row-item" style="display: none;">
+					<div class="row-box">
+						<div class="row-bg">
+							<div class="row-list">
+								<ul class="row-line">									
+									
+									<li>
+										<i class="avt"></i>
+										<img class="imt" src="img/row-01.png" />										
+									</li>
+									<li>
+										<i class="avt"></i>
+										<img class="imt" src="img/row-02.png" />									
+									</li>
+									<li>
+										<i class="avt"></i>
+										<img class="imt" src="img/row-03.png" />										
+									</li>
+									<li>
+										<i class="avt"></i>
+										<img class="imt" src="img/row-04.png" />										
+									</li>
+									<li>
+										<i class="avt"></i>
+										<img class="imt" src="img/row-05.png" />										
+									</li>
+									<li>
+										<i class="avt"></i>
+										<img class="imt" src="img/row-06.png" />										
+									</li>
+									<li>
+										<i class="avt"></i>
+										<img class="imt" src="img/row-07.png" />										
+									</li>
+									<li>
+										<i class="avt"></i>
+										<img class="imt" src="img/row-08.png" />										
+									</li>
+									
+									
+								</ul>
+								<div class="row-but">
+									<a class="ctn">取消</a>
+									<a class="ctm">确认</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<script>
+				$(document).ready(function(){
+					$('.add').unbind().click(function(){
+						$('.row-item').css("bottom","12px").animate({"bottom":"4px"},500).show();
+					});
+					$('.ctn').click(function(){
+						$('.row-item').hide();
+					});
+					
+					//选中图片
+					$('.row-line li').click(function(){ 
+						var index = $(this).index(); 
+						$('.avt').eq(index).css("top","1px").animate({"top":"0"},200).toggle();
+						
+					});
+				});
+			</script>
+<!--end	-->			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<div class="box-char-line">
+					<textarea rows="3" cols="10" name="content" onblur="if(this.innerHTML==''){this.innerHTML='多行输入';this.style.color='#B1B1B1'}" onfocus="if(this.innerHTML=='多行输入'){this.innerHTML='';this.style.color='#666'}">多行输入</textarea>
+				</div>
+				<div class="box-fot">
+					<span><img class="xl" src="img/xl.png" /></span>
+					<span><img class="add" src="img/add.png" /></span>
+					<span><a class="but frt">发送</a></span>
+				</div>
+			</div>
+			
+			
+			<!--右内容-->
+				<div class="box-nav">
+					<div class="box-ti2">话述模板</div>
+					
+					
+<!--------------------------------------------------------
+                    	作者：handy@163.com
+                    	时间：2016-08-25
+                    	描述：搜索
+---------------------------------------------------------->					
+					<div class="box-search">
+						<i class="i-con"></i>
+						<input autocomplete="off" class="box-keyword" type="text" placeholder="输入搜索的关键字">
+						<a class="i-search">搜 索</a>
+					</div>
+					<!--描述：搜索结果-->
+					<div class="box-mc" style="display: none;">
+						<div class="box-boom i-sp">
+							搜索结果
+							<span class="i-img">
+								<img class="i-close" src="img/colse.png"/>
+							</span>
+						</div>
+						<div class="i-box">
+							<table class="i-table">
+								<tbody>
+									<tr>
+										<th class="pl">话术类别</th>
+										<th class="pl">话术内容</th>
+									</tr>
+									<tr>
+										<th>卵巢囊肿-自动回复-自动回复</th>
+										<td>卵巢囊肿问题一卵巢囊肿问题一卵巢囊肿问题一</td>
+									</tr>
+									<tr>
+										<th>卵巢囊肿-自动回复-自动回复</th>
+										<td>卵巢囊肿问题一</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+			<script>
+				$(".i-search").click(function() {
+					$(".box-mc").show(200);					
+				});
+				
+				$(".i-close").click(function(event) {
+					$(".box-mc").hide();
+				})
+			</script>
+<!--------------------------end---------------------------->
+					
+					
+					
+					<ul id="accordion" class="accordion">
+						<li>
+							<div class="link"><i class="fa fa-paint-brush"></i>卵巢囊肿<i class="fa fa-chevron-down"></i></div>
+							<ul class="submenu">
+								<li><a><em>●</em>卵巢囊肿问题一</a></li>
+								<li><a><em>●</em>卵巢囊肿问题二</a></li>
+								<li><a><em>●</em>卵巢囊肿问题三</a></li>
+								<li><a><em>●</em>卵巢囊肿问题四</a></li>
+								<li><a><em>●</em>卵巢囊肿问题五</a></li>
+								<li><a><em>●</em>卵巢囊肿问题六</a></li>
+							</ul>
+						</li>
+						
+					</ul>
+			</div>
+		</div>
+
+		<div class="box-cov" style="display: none;">
+			<div class="box-boom">
+				肌瘤尺寸8CM以上
+				<span class="box-c">
+					<img class="close" src="img/colse.png"/>
+				</span>
+			</div>
+			<div class="box-y">
+				<div class="box-poc">
+					<div class="box-poc-u">
+						<div class="fle"><div class="box-da"><span>答</span></div></div>
+						<div><p class="box-wr">8CM以上的肌瘤在临床上是非常危险的，这种情况我建议你先做手术，排除危险，术后康复阶段再用我的方子理体质，把肌瘤体质彻底断根，好吗？</p></div>
+					</div>
+					<div class="box-poc-l">
+						<div class="fle"><div class="box-wen"><span>问</span></div></div>
+						<div><p class="box-wr">8CM以上的肌瘤在临床上是非常危险的</p></div>
+					</div>
+					<div class="box-poc-u">
+						<div class="fle"><div class="box-da"><span>答</span></div></div>
+						<div><p class="box-wr">8CM以上的肌瘤在临床上是非常危险的，这种情况我建议你先做手术，排除危险，术后康复阶段再用我的方子理体质，把肌瘤体质彻底断根，好吗？</p></div>
+					</div>
+					<div class="box-poc-l">
+						<div class="fle"><div class="box-wen"><span>问</span></div></div>
+						<div><p class="box-wr">8CM以上的肌瘤在临床上是非常危险的</p></div>
+					</div>
+					<div class="box-poc-u">
+						<div class="fle"><div class="box-da"><span>答</span></div></div>
+						<div><p class="box-wr">8CM以上的肌瘤在临床上是非常危险的，这种情况我建议你先做手术，排除危险，术后康复阶段再用我的方子理体质，把肌瘤体质彻底断根，好吗？</p></div>
+					</div>
+					<div class="box-poc-l">
+						<div class="fle"><div class="box-wen"><span>问</span></div></div>
+						<div><p class="box-wr">8CM以上的肌瘤在临床上是非常危险的</p></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!--修改密码弹框-->
+		<div style="display: none;" class="manage-m1">
+				<div class="manage-div"> 
+					<div class="manage-title">修改密码
+						<span><img class="aoc" src="img/corico.png" /></span>
+					</div>				
+					<div class="manage-line">
+						<ul class="mbox">
+							<li><div class="m1">原密码：</div><div class="m2"><input type="password" name="" id="" value="" placeholder="原密码" /> </div> </li>
+							<li><div class="m1">新密码：</div><div class="m2"><input type="password" name="" id="" value="" placeholder="新密码" /> </div> </li>
+							<li><div class="m1">确认密码：</div><div class="m2"><input type="password" name="" id="" value="" placeholder="确认密码" /> </div> </li>
+						</ul>
+						
+						<div class="manage-but">
+							<a>确认修改</a>
+						</div>
+					</div>				
+				</div>
+		</div>
+	
+		
+<!--------------------新增2016-08-30-------------------->
+		<script>
+			$(function() {
+				$(".order-list li").click(function() {
+					var index = $(this).index();
+					$(this).addClass("act").siblings().removeClass("act");
+				})
+			});
+			$(".dcou").click(function() {
+				$(".order-cm,.order-box").show();
+			});
+			$(".or-close").click(function() {
+				$(".order-cm,.order-box").hide();
+			});
+			$(".dbut").click(function() {
+				//alert("000")
+				$(".order-cm,.or-tab").show();
+			});
+			$(".m-close").click(function() {
+				$(".order-cm,.or-tab").hide();
+			});
+			$(".look").click(function(){
+				$(".or-tm").show();
+				$(".or-tab").hide();
+			});
+			$(".t-cloes").click(function(){
+				$(".or-tab").show();
+				$(".or-tm").hide();
+			});
+		</script>
+<!--------------------end-------------------->		
+		<script>
+			//弹框
+				$(".mbut").click(function() {
+					$(".manage-m1").show();
+				});
+
+				$(".aoc").click(function(event) {
+					$(".manage-m1").hide();
+				});
+
+		</script>
+		
+		<script>
+			//弹框
+				$(".submenu li a").click(function() {
+					$(".box-cov").show(300);
+				});
+
+				$(".close").click(function(event) {
+					$(".box-cov").hide();
+				});
+
+		</script>
+
+		<script type="text/javascript">
+			   $(function() {
+			var Accordion = function(el, multiple) {
+				this.el = el || {};
+				this.multiple = multiple || false;
+
+				// Variables privadas
+				var links = this.el.find('.link');
+				// Evento
+				links.on('click', {el: this.el, multiple: this.multiple}, this.dropdown)
+			}
+
+			Accordion.prototype.dropdown = function(e) {
+				var $el = e.data.el;
+					$this = $(this),
+					$next = $this.next();
+
+				$next.slideToggle();
+				$this.parent().toggleClass('open');
+
+				if (!e.data.multiple) {
+					$el.find('.submenu').not($next).slideUp().parent().removeClass('open');
+				};
+			}
+
+			var accordion = new Accordion($('#accordion'), false);
+		});
+	</script>
+
+	<script>
+		jeDate({
+			dateCell:"#startDate",
+			format:"YYYY/MM/DD",
+			isinitVal:true,
+			//isTime:true, //isClear:false,
+			minDate:"2016-07-01",
+			okfun:function(val){alert(val)}
+		})
+		jeDate({
+			dateCell:"#endDate",
+			format:"YYYY/MM/DD",
+			isinitVal:true,
+			//isTime:true, //isClear:false,
+			minDate:"2016-07-01",
+			okfun:function(val){alert(val)}
+		})
+
+		$(function(){
+			    $(".box-bm2,.box-bm").bind("click",function(e){
+			        e = e || window.event;
+			        var tar = e.srcElement || e.target;
+			        if(tar.nodeName.toLowerCase() == "li" && !$(tar).hasClass('act')){
+			            $(tar).addClass("act");
+			            $(tar).siblings().removeClass("act");
+			        }else{
+			            $(tar).removeClass("act");
+			        }
+			    })
+			})
+	</script>
+
+	</body>
+</html>
